@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Box Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <div class="nav">
+        <button id="nav-game"><i class="fas fa-gamepad"></i> Game</button>
+        <button id="nav-recharge"><i class="fas fa-wallet"></i> Recharge</button>
+        <button id="nav-withdrawal"><i class="fas fa-money-bill"></i> Withdrawal</button>
+        <button id="nav-invite"><i class="fas fa-user-plus"></i> Invite</button>
+        <button id="nav-admin"><i class="fas fa-shield-alt"></i> Admin</button>
+    </div>
+    <div class="container">
+        <!-- Register Section -->
+        <div id="register-section" class="section section-auth hidden">
+            <h2>Register</h2>
+            <input type="text" id="register-username" placeholder="Username" maxlength="20">
+            <input type="email" id="register-email" placeholder="Email" maxlength="50">
+            <input type="text" id="register-mobile" placeholder="Mobile Number (10 digits)" maxlength="10">
+            <input type="password" id="register-password" placeholder="Password (min 6 characters)" maxlength="50">
+            <input type="text" id="register-invite-code" placeholder="Invite Code (optional)" maxlength="50">
+            <button id="register-btn"><i class="fas fa-user-plus"></i> Register</button>
+            <p id="register-message"></p>
+            <p><a href="#" id="link-to-login">Already have an account? Login</a></p>
+        </div>
+
+        <!-- Login Section -->
+        <div id="login-section" class="section section-auth hidden">
+            <h2>Login</h2>
+            <input type="text" id="login-username" placeholder="Username" maxlength="20">
+            <input type="password" id="login-password" placeholder="Password" maxlength="50">
+            <button id="login-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+            <p id="login-message"></p>
+            <p><a href="#" id="link-to-register">Need an account? Register</a></p>
+        </div>
+
+        <!-- Game Section -->
+        <div id="game-section" class="section hidden">
+            <button id="profile-btn"><i class="fas fa-user"></i></button>
+            <h1>Futuristic Box Game</h1>
+            <div class="level-info">Level: <span id="current-level">1</span> / 500</div>
+            <div class="coin-info">Total Coins: <span id="total-coins">0</span></div>
+            <div class="message" id="message"></div>
+            <div class="box-container" id="box-container"></div>
+            <button id="next-level" disabled><i class="fas fa-arrow-right"></i> Next Level</button>
+        </div>
+        
+        <!-- Profile Section -->
+        <div id="profile-section" class="section hidden">
+            <h2>Profile</h2>
+            <div id="profile-display">
+                <img id="profile-photo" src="default-profile.png" alt="Profile Photo">
+                <p><strong>Username:</strong> <span id="profile-username"></span></p>
+                <p><strong>Registration Number:</strong> <span id="profile-reg-number"></span></p>
+                <p><strong>Mobile Number:</strong> <span id="profile-mobile"></span></p>
+                <p><strong>Total Winning Amount:</strong> <span id="profile-winnings"></span> coins</p>
+                <button id="edit-profile-btn"><i class="fas fa-edit"></i> Edit Profile</button>
+            </div>
+            <div id="profile-edit" class="hidden">
+                <input type="text" id="edit-username" placeholder="New Username" maxlength="20">
+                <input type="text" id="edit-mobile" placeholder="New Mobile Number (10 digits)" maxlength="10">
+                <input type="file" id="edit-photo" accept="image/jpeg,image/png">
+                <button id="save-profile-btn"><i class="fas fa-save"></i> Save</button>
+                <button id="cancel-edit-btn"><i class="fas fa-times"></i> Cancel</button>
+                <p id="profile-message"></p>
+            </div>
+        </div>
+
+        <!-- Ad Section -->
+        <div id="ad-section" class="section hidden">
+            <a id="ad-link" href="#" target="_blank">
+                <img id="ad-image" src="" alt="Ad">
+            </a>
+            <div class="ad-controls">
+                <div id="ad-timer">10</div>
+                <button id="skip-ad" disabled><i class="fas fa-forward"></i> Skip Ad</button>
+            </div>
+        </div>
+
+        <!-- Recharge Section -->
+        <div id="recharge-section" class="section hidden">
+            <h2>Recharge</h2>
+            <p id="recharge-message">Buy 100 coins in ₹100!</p>
+            <img src="qr.png" alt="QR Code" class="qr-code">
+            <button id="recharge-btn"><i class="fas fa-wallet"></i> Recharge</button>
+        </div>
+
+        <!-- Withdrawal Section -->
+        <div id="withdrawal-section" class="section hidden">
+            <h2>Withdrawal</h2>
+            <p>Coming Soon!</p>
+            <p>Launch Date: June 17, 2025</p>
+        </div>
+
+        <!-- Invite Section -->
+        <div id="invite-section" class="section hidden">
+            <h2>Invite Friends</h2>
+            <p>Invite friends and earn 100 coins per successful recharge!</p>
+            <div class="invite-link-container">
+                <input type="text" id="invite-code" readonly>
+                <button id="copy-invite-code"><i class="fas fa-copy"></i> Copy Code</button>
+            </div>
+            <div class="coin-info">Total Invite Coins: <span id="invite-coins">0</span></div>
+            <h3>Invited Users</h3>
+            <div id="invited-users">
+                <p>No users invited yet.</p>
+            </div>
+        </div>
+
+        <!-- Admin Panel -->
+        <div id="admin-section" class="section hidden">
+            <h2>Admin Panel</h2>
+            <div id="admin-login">
+                <input type="text" id="admin-username" placeholder="Username" maxlength="20">
+                <input type="password" id="admin-password" placeholder="Password" maxlength="50">
+                <button id="admin-login-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                <p id="admin-login-message"></p>
+            </div>
+            <div id="admin-controls" class="hidden">
+                <div class="admin-tabs">
+                    <button id="tab-ads" class="active">Manage Ads</button>
+                    <button id="tab-users">Registered Users</button>
+                </div>
+                <div id="ads-tab">
+                    <h3>Manage Ads</h3>
+                    <input type="file" id="ad-upload" accept="image/jpeg,image/png">
+                    <input type="text" id="ad-link-input" placeholder="Ad URL" maxlength="200">
+                    <button id="upload-ad-btn"><i class="fas fa-upload"></i> Upload Ad</button>
+                    <p id="ad-upload-message"></p>
+                    <div id="ad-list"></div>
+                </div>
+                <div id="users-tab" class="hidden">
+                    <h3>Registered Users</h3>
+                    <p>Total Users: <span id="total-users">0</span></p>
+                    <select id="date-filter">
+                        <option value="">All Dates</option>
+                    </select>
+                    <div id="user-list"></div>
+                </div>
+                <button id="admin-logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
